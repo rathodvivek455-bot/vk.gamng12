@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Gaming | Home</title>
+    <style>
+        /* --- CSS STYLING --- */
+        :root {
+            --bg-color: #0b0c10;
+            --card-color: #1f2833;
+            --text-color: #c5c6c7;
+            --primary-neon: #66fcf1;
+            --secondary-neon: #45a29e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(11, 12, 16, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-neon);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--primary-neon);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-neon);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(11, 12, 16, 1)), url('https://picsum.photos/1920/1080?blur=2') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--primary-neon);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--primary-neon);
+            border: 2px solid var(--primary-neon);
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 5px var(--primary-neon);
+        }
+
+        .btn:hover {
+            background: var(--primary-neon);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px var(--primary-neon);
+        }
+
+        /* Content Sections */
+        .container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #fff;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-neon);
+            margin: 10px auto 0;
+        }
+
+        /* Grid for Games */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .game-card {
+            background-color: var(--card-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(102, 252, 241, 0.2);
+        }
+
+        .game-thumb {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .game-info {
+            padding: 1.5rem;
+        }
+
+        .game-info h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-info p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #07080a;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-color);
+                padding: 1rem;
+                text-align: center;
+                border-bottom: 2px solid var(--primary-neon);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- --- HTML STRUCTURE --- -->
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">NEXUS<span>GAMING</span></div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#games">Trending Games</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero" id="home">
+        <h1>Welcome to the Cyber Realm</h1>
+        <p>Your ultimate portal for upcoming releases, gaming news, and competitive reviews.</p>
+        <a href="#games" class="btn">Explore Games</a>
+    </section>
+
+    <!-- Main Content / Games Grid -->
+    <main class="container" id="games">
+        <h2 class="section-title">Trending Now</h2>
+        <div class="game-grid">
+            
+            <!-- Card 1 -->
+            <div class="game-card">
+                <img src="https://picsum.photos/400/250?random=1" alt="Game 1 Thumbnail" class="game-thumb">
+                <div class="game-info">
+                    <h3>Cyber Attack 2026</h3>
+                    <p>Dive deep into a neo-tokyo landscape where tactical espionage meets cybernetic augmentations.</p>
+                    <a href="#" class="btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Read Review</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="game-card">
+                <img src="https://picsum.photos/400/250?random=2" alt="Game 2 Thumbnail" class="game-thumb">
+                <div class="game-info">
+                    <h3>Realm of Echoes</h3>
+                    <p>An open-world dark fantasy RPG featuring dynamic weather systems and brutal tactical combat.</p>
+                    <a href="#" class="btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Read Review</a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="game-card">
+                <img src="https://picsum.photos/400/250?random=3" alt="Game 3 Thumbnail" class="game-thumb">
+                <div class="game-info">
+                    <h3>Velocity: Neon Drift</h3>
+                    <p>The next-generation arcade racer packed with fully customizable synthwave vehicles.</p>
+                    <a href="#" class="btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Read Review</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Nexus Gaming. Built with HTML & CSS.</p>
+    </footer>
+
+    <!-- --- JAVASCRIPT (Mobile Menu Toggle) --- -->
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
