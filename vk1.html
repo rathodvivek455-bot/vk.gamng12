@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Dynamic Hub</title>
+    <!-- Google Fonts: Inter for clean body, Syne for bold aesthetic headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables for seamless Light/Dark theme switching */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --card-border: rgba(255, 255, 255, 0.4);
+            --text-main: #1a1a1a;
+            --text-muted: #666666;
+            --accent: #6366f1;
+            --shadow: rgba(31, 38, 135, 0.08);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1e2f 100%);
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --card-border: rgba(255, 255, 255, 0.05);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #818cf8;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.5s ease, color 0.3s ease, border 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+
+        /* Header Style */
+        header {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        /* Aesthetic Theme Button */
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            color: var(--text-main);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        /* Bento Grid Layout */
+        .bento-grid {
+            width: 100%;
+            max-width: 900px;
+            display: grid;
+            grid-template-columns: repeat(3, 100%);
+            grid-gap: 1.5rem;
+        }
+
+        /* Grid Responsive Layout using modern CSS Subgrid/Repeat */
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: auto;
+            }
+            .span-2 { grid-column: span 2; }
+            .span-3 { grid-column: span 3; }
+        }
+
+        /* Micro-interactions & Glassmorphism Card Style */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hover animation */
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px var(--shadow);
+            border-color: rgba(129, 140, 248, 0.3);
+        }
+
+        .card h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Dynamic Widget Styles */
+        .time-display {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Syne', sans-serif;
+            color: var(--accent);
+            margin-top: 1rem;
+        }
+
+        /* Quick Interactive Button */
+        .cta-btn {
+            margin-top: 1.5rem;
+            background: var(--text-main);
+            color: var(--bg-gradient);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            width: max-content;
+            transition: opacity 0.2s;
+        }
+
+        .cta-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Pure CSS subtle floating background shapes for depth */
+        .glow-sphere {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(255,255,255,0) 70%);
+            top: -10%;
+            left: -10%;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-sphere"></div>
+
+    <header>
+        <h1>creatives.</h1>
+        <button class="theme-toggle" id="themeBtn">Toggle Theme</button>
+    </header>
+
+    <main class="bento-grid">
+        <!-- Card 1: Greeting & Dynamic Time -->
+        <div class="card span-2">
+            <div>
+                <h2 id="greeting">Hello, Visitor</h2>
+                <p>Welcome to your minimalist dashboard. Time flies, make it beautiful.</p>
+            </div>
+            <div class="time-display" id="clock">00:00:00</div>
+        </div>
+
+        <!-- Card 2: Interactive Element -->
+        <div class="card">
+            <div>
+                <h2>Inspiration</h2>
+                <p id="quote">"Simplicity is the ultimate sophistication."</p>
+            </div>
+            <button class="cta-btn" id="quoteBtn">New Quote</button>
+        </div>
+
+        <!-- Card 3: Status Widget -->
+        <div class="card">
+            <div>
+                <h2>Status</h2>
+                <p>All systems running smoothly.</p>
+            </div>
+            <span style="display:inline-block; width:10px; height:10px; background:#10b981; border-radius:50%; margin-top: 1rem;"></span>
+        </div>
+
+        <!-- Card 4: Dynamic Interaction Area -->
+        <div class="card span-2">
+            <div>
+                <h2>The Aesthetic Approach</h2>
+                <p>This layout utilizes CSS grid matching with soft background blurs to produce depth. Click around to see the dynamic DOM manipulation in full effect.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // --- Theme Switching Logic ---
+        const themeBtn = document.getElementById('themeBtn');
+        let isDark = false;
+
+        themeBtn.addEventListener('click', () => {
+            isDark = !isDark;
+            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            themeBtn.textContent = isDark ? 'Light Vibe' : 'Dark Vibe';
+        });
+
+        // --- Dynamic Clock Logic ---
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+            document.getElementById('clock').textContent = timeString;
+
+            // Simple dynamic greeting based on time
+            const hour = now.getHours();
+            const greetingText = document.getElementById('greeting');
+            if (hour < 12) greetingText.textContent = "Good morning.";
+            else if (hour < 18) greetingText.textContent = "Good afternoon.";
+            else greetingText.textContent = "Good evening.";
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial run
+
+        // --- Dynamic Quote Engine ---
+        const quotes = [
+            "\"Design is intelligence made visible.\"",
+            "\"Less is more modern.\"",
+            "\"Digital design is like painting, except the paint is never dry.\"",
+            "\"Whitespace is like air: it is necessary for design to breathe.\""
+        ];
+        
+        const quoteBtn = document.getElementById('quoteBtn');
+        const quoteText = document.getElementById('quote');
+
+        quoteBtn.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteText.textContent = quotes[randomIndex];
+        });
+    </script>
+</body>
+</html>
